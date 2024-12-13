@@ -9,6 +9,12 @@
     --gray: #808080;
     --dark-gray: #555;
 }
+#profileButtonContainer{
+    display: flex;
+}
+#profile{
+    margin: 0px 3px;
+}
 
 * {
     margin: 0;
@@ -42,13 +48,13 @@ body {
 }
 
 .nav {
-    display: none;
+    display: flex;
     gap: 1.5rem;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (max-width:768px) {
     .nav {
-        display: flex;
+        display: none;
     }
 }
 
@@ -113,8 +119,46 @@ body {
     max-width: 1280px;
     display: flex;
     gap: 2rem;
-    padding: 0.6rem;
     align-items: center;
+    overflow: hidden;
+    padding: 0.6rem 1.3rem;;
+}
+.fa-xmark{
+    font-size: 2rem;
+    text-align: right;
+    margin-right: 2px;
+}
+.content-mid{
+    width: 300px;
+    box-shadow: 1px 2px 3px black, -1px -2px 3px gray ;
+    z-index: 2;
+    display: none;
+    margin: 10% auto;
+    transition: all 0.3s linear;
+    animation: animateScale 0.2s ease;
+    height: 200px;
+    
+}
+@keyframes animateScale{
+    from{
+    transform: scale(0);
+    }to{
+    transform: scale(1.3);
+    }
+    
+}
+.content-mid h2{
+    margin: 10px 0px;
+}
+
+
+.profile-section p{
+    text-align: left;
+    margin-left: 20px;
+}
+
+.profile-section button{
+    margin: auto;
 }
 .content-right {
     display: flex;
@@ -122,16 +166,16 @@ body {
     justify-content: center;
     
 }
+
 .content-left {
     text-align: center;
-    margin-left: 20px;
     animation: slideFromLeft 1s ease forwards;
     opacity: 0;
 }
 
 @keyframes slideFromLeft {
     0% {
-        opacity: 0;
+        opacity:identifier 0;
         transform: translateX(-100%);
     }
     100% {
@@ -216,6 +260,11 @@ body {
 .section-image {
     height: 100%;
     width: 100%;
+}
+@media screen and (max-width:768px) {
+    .main-section {
+        flex-direction: column;
+    }
 }
 
 @media screen and (min-width:768px) {
@@ -307,6 +356,8 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 2rem;
+    animation: slideFrombottom 1s ease forwards;
+    
 }
 
 .main-info {
@@ -330,9 +381,12 @@ body {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
     margin-top: 1.3rem;
+    animation: slideFrombottom 1s ease forwards;
+    opacity: 0;
 }
 
 .feature-card {
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -343,6 +397,18 @@ body {
     transition: all 0.3s ease;
 
 }
+@keyframes  slideFrombottom {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 .feature-card:hover{
     box-shadow: 2px 2px 4px black, -2px -2px 4px gray ;
 }
