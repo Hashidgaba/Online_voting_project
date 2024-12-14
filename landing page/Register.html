@@ -29,8 +29,8 @@
         <!-- Registration Form -->
         <form id="registerForm" style="display: none;">
 
-            <label for="registerUsername">Username</label>
-            <input type="text" id="registerUsername" placeholder="Create a username">
+            <label for="registerUsername">Name</label>
+            <input type="text" id="registerUsername" placeholder="Enter your Name">
             <P class="userError" style="color: red; margin: 2px 0px; display: none;">user already Exist</P>
 
             <label for="registerEmail">Email</label>
@@ -50,118 +50,109 @@
             <a href="#" id="toggleLink">Don't have an account? Register here</a>
         </div>
     </div>
+<script>
+    // References to forms and elements
+    const formTitle = document.getElementById('formTitle');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const toggleLink = document.getElementById('toggleLink');
 
-    <script>
-        // References to forms and elements
-        const formTitle = document.getElementById('formTitle');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const toggleLink = document.getElementById('toggleLink');
+    let isLogin = true;
 
-        let isLogin = true;
+    // Toggle between login and register forms
+    toggleLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        isLogin = !isLogin;
 
-        // Toggle between login and register forms
-        toggleLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            isLogin = !isLogin;
+        if (isLogin) {
+            formTitle.textContent = 'Login';
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            toggleLink.textContent = "Don't have an account? Register here";
+        } else {
+            formTitle.textContent = 'Register';
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            toggleLink.textContent = "Already have an account? Login here";
+        }
+    });
 
-            if (isLogin) {
-                formTitle.textContent = 'Login';
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-                toggleLink.textContent = "Don't have an account? Register here";
+    // Handle Login
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.email === email && u.password === password);
+
+        if (user) {
+            localStorage.setItem('loggedIn', 'true');
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            window.location.href = 'index.html';
+        } else {
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".error").innerHTML = "Invalid email or password";
+        }
+    });
+
+    // Handle Registration
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('registerEmail').value;
+        const username = document.getElementById('registerUsername').value;
+        const password = document.getElementById('registerPassword').value;
+
+        // Validate input fields
+        if (username.length < 4 || password.length < 7) {
+            if (username.length < 4) {
+                document.querySelector(".userError").style.display = 'block';
+                document.querySelector(".userError").innerHTML = 'Username must be at least 4 characters long';
             } else {
-                formTitle.textContent = 'Register';
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-                toggleLink.textContent = "Already have an account? Login here";
+                document.querySelector(".userError").style.display = 'none';
             }
-        });
 
-        // Handle Login
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const user = users.find(u => u.email == email && u.password === password);
-
-            if (user) {
-                localStorage.setItem('loggedIn', 'true');
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                window.location.href = 'index.html';
-
+            if (password.length < 7) {
+                document.querySelector(".passError").style.display = 'block';
+                document.querySelector(".passError").innerHTML = 'Password must be at least 7 characters long';
             } else {
-                document.querySelector(".error").style.display = "block";
+                document.querySelector(".passError").style.display = 'none';
             }
-        });
+            return;
+        }
 
-        // Handle Registration
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('registerEmail').value;
-            const username = document.getElementById('registerUsername').value;
-            const password = document.getElementById('registerPassword').value;
-            if (username.trim() != "" && password.trim() != "") {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userNameExists = users.some(u => u.username === username);
+        const userEmailExists = users.some(u => u.email === email);
 
-                if (username.length < 4 || password.length < 7) {
-                   if(username.length < 4){
-                    document.querySelector(".userError").style.display = 'block'
-                    document.querySelector(".userError").innerHTML = 'Invalid username'
+        // Check for existing username or email
+        if (userNameExists) {
+            document.querySelector(".userError").style.display = 'block';
+            document.querySelector(".userError").innerHTML = 'Username already exists';
+            return;
+        } else {
+            document.querySelector(".userError").style.display = 'none';
+        }
 
-                   }else{
-                    document.querySelector(".userError").style.display = 'none'
-                   }
-                   if(password.length < 7){
-                    document.querySelector(".passError").style.display = 'block';
-                    document.querySelector(".passError").innerHTML = 'Password must be atleast 7 characters'
-                   }else{
-                    document.querySelector(".passError").style.display = 'none';
+        if (userEmailExists) {
+            document.querySelector(".emailError").style.display = 'block';
+            document.querySelector(".emailError").innerHTML = 'Email already exists';
+            return;
+        } else {
+            document.querySelector(".emailError").style.display = 'none';
+        }
 
-                   }
-                } else {
-                    const users = JSON.parse(localStorage.getItem('users')) || [];
-                    const userNameExists = users.some(u => u.username === username);
-                    const userEmailExists = users.some(u => u.email === email);
-                    if (userNameExists || userEmailExists) {
-                        if (userNameExists) {
-                            document.querySelector(".userError").style.display = 'block'
-                        } else {
-                            document.querySelector(".userError").style.display = 'none'
-                            document.querySelector(".emailError").style.display = 'block'
+        // Save new user
+        const newUser = { email, username, password };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
 
-                        }
-                    } else {
-
-                        const newUser = { email, username, password };
-                        users.push(newUser);
-                        localStorage.setItem('users', JSON.stringify(users));
-                        document.querySelector(".userError").style.display = 'none'
-                        document.querySelector(".emailError").
-                            document.querySelector(".emailError").innerHTML = 'Registeration successful'
-                        localStorage.setItem('loggedIn', 'true');
-                        localStorage.setItem('currentUser', JSON.stringify(newUser));
-                        alert('Registration successful!');
-                        window.location.href = 'index.html';// Redirect to home page after registration
-                    }
-
-                }
-            }else{
-                if(username.trim() == ""){
-                    document.querySelector(".userError").style.display = 'block'
-                document.querySelector(".userError").innerHTML = 'Username is required'
-                }else{
-                    document.querySelector(".userError").style.display = 'none'
-
-                }
-                if(password.trim()==""){
-                    document.querySelector(".passError").style.display = 'block';
-                    document.querySelector(".passError").innerHTML = 'Password is required'
-                }
-            }
-
-        });
-    </script>
+        alert('Registration successful!');
+        window.location.href = 'index.html'; 
+    });
+</script>
 
 </body>
 

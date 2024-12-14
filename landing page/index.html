@@ -58,16 +58,71 @@
                     </div>
                 </div>
                 <div class="content-mid">
-                    <i style="display: none;" onclick=removeProfile() id="remove" class="fa-solid fa-xmark"></i>
-                    <h2>My Profile</h2>
-                    <div class="profile-section">
-                        <p class="username">username</p>
-                        <p class="useremail">useremail</p>
-                        <button style="display: none;" id="logoutButton" onclick=logout()
-                            class="contact-button">Logout</button>
+                    <div class="remove-cont">
+                        <i style="display: none;" onclick=removeProfile() id="remove"
+                            class="fa-solid fas fa-arrow-right"></i>
+                    </div>
+                    <div class="userdetail-cont">
+                        <i style="margin-bottom: 10px;" class="fa-regular fa-user"></i>
+                        <p style="text-transform: capitalize; font-size: 1.5rem; font-weight:500" class="profileName">
+                        </p>
+                        </p>
+                        <p style="margin: 4px 0px;" class="username"></p>
+                        <p class="useremail"></p>
+                        <button style="margin: 15px auto;" class="contact-button">Edit profile</button>
+                    </div>
+                    <div class="userdetail-links-cont" style="padding: 5px; display: flex; flex-direction: column;">
+                        <!-- settings -->
+                        <div class="userdetail-link"
+                            style="display: flex; justify-content: space-between; align-items:center; margin: 12px 0px;">
+                            <div style="display: flex;align-items:center; justify-content: center;" class="left">
+                                <i style="font-size: 1rem; margin-right: 5px;" class="fa-solid fa-bars"></i>
+                                <p>settings</p>
+                            </div>
+                            <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
+                        </div>
+                        <!-- voter list -->
+                        <div class="userdetail-link"
+                            style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
+                            <div style="display: flex;align-items:center; justify-content: center;" class="left">
+                                <i style="font-size: 1rem;" class="fa-solid fa-check-to-slot"></i>
+                                <p>Voter List</p>
+                            </div>
+                            <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
+                        </div>
+                        <!-- change pass -->
+                        <div class="userdetail-link"
+                            style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
+                            <div style="display: flex;align-items:center; justify-content: center;" class="left">
+                                <i style="font-size: 1rem;" class="fa-solid fa-key"></i>
+                                <p>change password</p>
+                            </div>
+                            <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
+                        </div>
+
+                    </div>
+                    <div style="padding: 5px; display: flex; flex-direction: column;" class="userdetail-bottom-link">
+                        <div class="userdetail-link"
+                            style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
+                            <div style="display: flex;align-items:center; justify-content: center;" class="left">
+                                <i style="font-size: 0.9rem;" class=" fa-solid fa-brands fa-hire-a-helper"></i>
+                                <p>Help & support</p>
+                            </div>
+                            <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
+                        </div>
+                        <div class="userdetail-link"
+                            style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
+                            <div style="display: flex;align-items:center; justify-content: center;" class="left">
+                                <i style="display: none; text-align: left; font-size: 1rem;" id="logoutButton"
+                                    onclick=logout() class="fa-solid fa-right-from-bracket"></i>
+                                <p>log out</p>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-
+                <!-- <i style="display: none; text-align: left; font-size: 1rem;" id="logoutButton" onclick=logout()
+                class="fa-solid fa-right-from-bracket"></i> -->
                 <div class="content-right">
 
                     <div class="image-container">

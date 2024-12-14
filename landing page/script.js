@@ -6,8 +6,9 @@ if (isLoggedIn) {
     loginButton.style.display = 'none';
     profile.style.display = 'block'
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    document.querySelector(".username").innerHTML = (`Name: \n ${currentUser.username}`);
-    document.querySelector(".useremail").innerHTML = (`Email: \n ${currentUser.email}`);
+    document.querySelector(".username").innerHTML = (`@${currentUser.username.trim().replace(/\s+/g, '').toLowerCase()}`);
+    document.querySelector(".useremail").innerHTML = (`${currentUser.email}`);
+    document.querySelector(".profileName").innerHTML = currentUser.username;
     
 } else {
     loginButton.style.display = 'block'
@@ -34,19 +35,25 @@ let rightContent = document.querySelector(".content-right");
 let profileContent = document.querySelector(".content-mid");
 let profileButton = document.getElementById("profile");
 let removeButton = document.getElementById('remove');
-
+let header = document.querySelector('.header');
 function showProfile() {
     profileContent.style.display = 'block';
     leftContent.style.display = 'none';
     rightContent.style.display = 'none'
     profileButton.style.display = 'none'
     removeButton.style.display = 'block'
+    header.style.display = 'none'
+    document.getElementById("HOME").style.backgroundColor = 'lightgray'
+
 }
 function removeProfile() {
+    header.style.display = 'block'
     profileContent.style.display = 'none';
     leftContent.style.display = 'block';
     rightContent.style.display = 'block'
     profileButton.style.display = 'block'
     removeButton.style.display = 'none'
+    document.getElementById("HOME").style.backgroundColor = 'white'
+
 }
 

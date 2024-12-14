@@ -123,27 +123,34 @@ body {
     overflow: hidden;
     padding: 0.6rem 1.3rem;;
 }
-.fa-xmark{
-    font-size: 2rem;
-    text-align: right;
-    margin-right: 2px;
+.remove-cont{
+    padding: 5px;
+    max-width: max-content;
+    margin-left: 90%;
+    color: black;
+    
 }
+
 .content-mid{
     width: 300px;
-    box-shadow: 1px 2px 3px black, -1px -2px 3px gray ;
     z-index: 2;
     display: none;
-    margin: 10% auto;
+    background-color: white;
+    margin: 5% auto;
     transition: all 0.3s linear;
-    animation: animateScale 0.2s ease;
-    height: 200px;
+    animation: animateScale 0.3s ease;
+    padding: 10px;
+    border-radius: 5%;
+    height: 500px;
     
 }
 @keyframes animateScale{
     from{
-    transform: scale(0);
+        opacity: 0;
+    transform:translateY(-100%) ;
     }to{
-    transform: scale(1.3);
+        opacity: 1;
+    transform: translateY(100);
     }
     
 }
@@ -153,10 +160,14 @@ body {
 
 
 .profile-section p{
+    margin: 15px auto;
     text-align: left;
-    margin-left: 20px;
+    height: 1rem;
+    width: 80%;
 }
-
+.userdetail-cont, .userdetail-links-cont{
+    border-bottom: 2px solid rgba(124, 121, 121, 0.63);  
+}
 .profile-section button{
     margin: auto;
 }
@@ -194,6 +205,20 @@ body {
     font-size: 2.3rem;
     padding: 1.1rem;
     color: var(--text-color);
+}
+.fa-solid{
+    font-size: 1.6rem;
+    text-align: right;
+    margin-right: 5px;
+    color: #5254f8;
+}
+.fa-user{
+    font-size: 2.5rem;
+    border-radius: 50%;
+    border: 2px solid whitesmoke;
+    box-shadow: 1px 1px 3px rgba(15, 15, 15, 0.63),-1px -1px 3px rgb(15,15,15,0.63)  ;
+    padding: 10px;;
+
 }
 
 .section-description {
