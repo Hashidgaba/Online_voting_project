@@ -1,6 +1,10 @@
 {
-    "routes": [
-      { "src": "/", "dest": "/landing page/index.html" }
-    ]
-  }
-  
+  "routes": [
+    { "src": "/", "dest": "/landing page/index.html" },
+    { "src": "/style.css", "dest": "/landing page/style.css" },
+    { "src": "/script.js", "dest": "/landing page/script.js" },
+    { "src": "/Register.html", "dest": "/landing page/Register.html" },
+    { "src": "/register.css", "dest": "/landing page/register.css" },
+    { "src": "/Photos/(.*)", "dest": "/landing page/Photos/$1" }
+  ]
+}
