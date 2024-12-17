@@ -67,6 +67,11 @@ body {
     transform: color 0.1s;
     transition: color 0.1s ease;
 }
+@media screen and (max-width:768px){
+    .nav-link{
+        font-size: 0.5rem;
+    }
+}
 
 .nav-link:hover {
     color: var(--link-color);
