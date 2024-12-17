@@ -20,6 +20,7 @@
                 <div class="logo">
                     <img src="Photos/logo.jpg" alt="logoImage" class="logo-icon" />
                 </div>
+                
                 <nav class="nav">
                     <a href="#" class="nav-link">Home</a>
                     <a href="/vote Now/votenow.html" class="nav-link vote">Vote Now</a>
@@ -27,9 +28,8 @@
                     <a href="/FeedBack Form/feedback.html" class="nav-link">Feedback</a>
                 </nav>
                 <div id="profileButtonContainer">
-                    <button style="margin-right: 30px;" class="contact-button" id="loginButton">Login</button>
-                    <button onclick=showProfile() class="contact-button" id="profile"
-                        style="display: none;margin-right: 30px; ">profile</button>
+                    <button class="contact-button" id="loginButton">Login</button>
+                    <i style="display: none;" onclick=showProfile() id="profile" class="fa-regular fa-user"></i>
                 </div>
             </header>
         </div>
@@ -48,7 +48,8 @@
                         today and be part of the future of voting.
                     </p>
                     <div class="button-group">
-                        <a href="/vote Now/votenow.html" style="display: none;" class="contact-button vote" id="voteNow">Vote
+                        <a href="/vote Now/votenow.html" style="display: none;" class="contact-button vote"
+                            id="voteNow">Vote
                             Now</a>
                         <a class="contact-button" id="register">Register</a>
                         <a class="contact-button" id="tower">Take Tour</a>

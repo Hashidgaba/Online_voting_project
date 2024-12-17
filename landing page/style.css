@@ -28,7 +28,6 @@ body {
     text-align: center;
     background-color: var(--background-color);
 }
-
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -36,8 +35,10 @@ body {
     height: 70px;
     overflow: hidden;
 }
-.admin{
-    display: block;
+
+.nav {
+    display: flex;
+    gap: 1.5rem;
 }
 
 .logo-icon {
@@ -47,26 +48,18 @@ body {
     background-color: none;
 }
 
-.nav {
-    display: flex;
-    gap: 1.5rem;
+#profile{
+    font-size: 1.4rem;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 50%;
+    margin: 0px 7px;
+    background-color: white;
 }
 
-@media screen and (max-width:768px) {
-    .nav {
-        display: flex;
-        gap: 1.2rem;
-    }
-    .nav-link {
-        color: #718096;
-        font-size: 0.7rem;
-        font-weight: 600;
-        transform: color 0.1s;
-        transition: color 0.1s ease;
-    }
+#loginButton{
+    margin-right: 30px;
 }
-
-
 .nav-link {
     color: #718096;
     font-size: 1.125rem;
@@ -145,7 +138,7 @@ body {
     z-index: 2;
     display: none;
     background-color: white;
-    margin: 5% auto;
+    margin: 0% auto;
     transition: all 0.3s linear;
     animation: animateScale 0.3s ease;
     padding: 10px;
@@ -228,7 +221,6 @@ body {
     padding: 10px;;
 
 }
-
 .section-description {
     color: var(--gray);
     font-size: 1.13rem;
