@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    background-color: #6366F1;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+header h2{ 
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.dropdown {
+    margin: 1rem 0;
+}
+
+.dropdown label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.dropdown select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #6366F1;
+    border-radius: 4px;
+}
+
+.candidates {
+    margin: 1rem 0;
+}
+
+.candidate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.candidate button {
+    background-color: #6366F1;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.candidate button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.voted {
+    background-color: #D1FAE5;
+}
+
+.voted .status {
+    font-weight: bold;
+    color: #065F46;
+}
+
+@media (max-width: 600px) {
+    .candidate {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .candidate button {
+        margin-top: 0.5rem;
+    }
+}

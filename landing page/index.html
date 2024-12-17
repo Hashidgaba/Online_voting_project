@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>MH-Voting app</title>
+    <title>MH-Voting</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -22,24 +22,19 @@
                 </div>
                 <nav class="nav">
                     <a href="#" class="nav-link">Home</a>
-                    <a href="votenow.html" class="nav-link">Vote Now</a>
-                    <a href="admin.html" class="nav-link">Admin panel</a>
-                    <a href="feedback.html" class="nav-link">Feedback</a>
+                    <a href="/vote Now/votenow.html" class="nav-link vote">Vote Now</a>
+                    <a href="/Admin Panel/admin.html" class="nav-link">Admin panel</a>
+                    <a href="/FeedBack Form/feedback.html" class="nav-link">Feedback</a>
                 </nav>
-
-                <!-- <a href="Register.html" onclick=login() class="contact-button">
-                    Login
-                </a> -->
                 <div id="profileButtonContainer">
-                    <button class="contact-button" id="loginButton">Login</button>
+                    <button style="margin-right: 30px;" class="contact-button" id="loginButton">Login</button>
                     <button onclick=showProfile() class="contact-button" id="profile"
-                        style="display: none;">profile</button>
-
+                        style="display: none;margin-right: 30px; ">profile</button>
                 </div>
             </header>
         </div>
 
-        <div class="content">
+        <div class="content" style="overflow: hidden;">
             <section style="overflow: hidden;" class="main-section">
 
                 <div class="content-left">
@@ -53,14 +48,16 @@
                         today and be part of the future of voting.
                     </p>
                     <div class="button-group">
-                        <a href="#start" class="start-button">Register</a>
-                        <a href="#tour" class="tour-button">Take Tour</a>
+                        <a href="votenow.html" style="display: none;" class="contact-button vote" id="voteNow">Vote
+                            Now</a>
+                        <a class="contact-button" id="register">Register</a>
+                        <a class="contact-button" id="tower">Take Tour</a>
                     </div>
                 </div>
                 <div class="content-mid">
                     <div class="remove-cont">
                         <i style="display: none;" onclick=removeProfile() id="remove"
-                            class="fa-solid fas fa-arrow-right"></i>
+                            class="fa-solid fas fa-arrow-right "></i>
                     </div>
                     <div class="userdetail-cont">
                         <i style="margin-bottom: 10px;" class="fa-regular fa-user"></i>
@@ -77,24 +74,31 @@
                             style="display: flex; justify-content: space-between; align-items:center; margin: 12px 0px;">
                             <div style="display: flex;align-items:center; justify-content: center;" class="left">
                                 <i style="font-size: 1rem; margin-right: 5px;" class="fa-solid fa-bars"></i>
-                                <p>settings</p>
+                                <p style="margin: 0 auto;">settings</p>
                             </div>
                             <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
                         </div>
                         <!-- voter list -->
                         <div class="userdetail-link"
                             style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
-                            <div style="display: flex;align-items:center; justify-content: center;" class="left">
+                            <div style="display: flex; align-items:center; justify-content: center;" class="left">
                                 <i style="font-size: 1rem;" class="fa-solid fa-check-to-slot"></i>
-                                <p>Voter List</p>
+                                <p style="margin: 0 auto;">Voter List</p>
                             </div>
-                            <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
+                            <div class="right">
+                                <i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i>
+                            </div>
+                        </div>
+                        <!-- Container for displaying the voting details -->
+                        <div id="voterListContainer" style="margin-top: 10px; padding: 5px;">
+                            <!-- Voted societies will be listed here -->
                         </div>
                         <!-- change pass -->
                         <div class="userdetail-link"
-                            style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
+                            style="display: flex;justify-content: space-between; align-items:center; margin: 8px 0px;">
                             <div style="display: flex;align-items:center; justify-content: center;" class="left">
-                                <i style="font-size: 1rem;" class="fa-solid fa-key"></i>
+                                <i style="font-size: 1rem;display: flex;align-items:center; justify-content: center;"
+                                    class="fa-solid fa-key"></i>
                                 <p>change password</p>
                             </div>
                             <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
@@ -121,8 +125,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <i style="display: none; text-align: left; font-size: 1rem;" id="logoutButton" onclick=logout()
-                class="fa-solid fa-right-from-bracket"></i> -->
                 <div class="content-right">
 
                     <div class="image-container">

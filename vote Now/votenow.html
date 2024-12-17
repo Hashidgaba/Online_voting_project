@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vote.css">
+    <title>Online Voting</title>
+</head>
+
+<body>
+    <header>
+        <h1>Vote as you want</h1>
+    </header>
+
+    <div class="container">
+        <div class="dropdown">
+            <label for="society">Select a Society:</label>
+            <select id="society" onchange="showCandidates()">
+                <option value="">-- Select Society --</option>
+                <option value="Sports">Sports Society</option>
+                <option value="Public">Public Speaking</option>
+                <option value="Music">Music Society</option>
+                <option value="Science">Science Club</option>
+                <option value="Literature">Literature Club</option>
+                <option value="Hackathone">Heckathon</option>
+            </select>
+        </div>
+
+        <div id="candidates-container"></div>
+    </div>
+
+    <script>
+        const candidatesData = {
+            Sports: ["Bulbul shah", "Faizan Haroon"],
+            Public: ["Hurr Abbas", "Nida yasir"],
+            Music: ["Sheraz Arif", "Rizwan Ahmed"],
+            Science: ["Hashid gaba", "Jibran"],
+            Literature: ["Abdul Moiz", "Yasir Faizan"],
+            Hackathone: ["Farzeen Ali", "Mansoor Ahmed"],
+        };
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || { username: "Guest" };
+
+        // Load previous votes of this user
+        const votedDetails = JSON.parse(localStorage.getItem('votedDetails')) || [];
+        const userVotes = votedDetails.filter(vote => vote.username === currentUser.username);
+
+        // Show already voted societies on page load
+        function checkPreviousVotes() {
+
+            const societyDropdown = document.getElementById("society");
+            userVotes.forEach(vote => {
+                const option = societyDropdown.querySelector(`option[value="${vote.society}"]`);
+                if (option) {
+                    option.disabled = true;
+                    option.style.backgroundColor = "#D1FAE5";
+                    option.textContent += ` (Voted: ${vote.candidate})`;
+                }
+            });
+            
+        }
+
+        // Show candidates when a society is selected
+        function showCandidates() {
+            const society = document.getElementById("society").value;
+            const container = document.getElementById("candidates-container");
+            container.innerHTML = "";
+
+            if (!society) return;
+
+            // Check if already voted
+            if (userVotes.some(vote => vote.society === society)) {
+                alert("You have already voted in this society!");
+                return;
+            }
+
+            const candidates = candidatesData[society];
+
+            const candidatesList = document.createElement("div");
+            candidatesList.classList.add("candidates");
+
+            candidates.forEach(candidate => {
+                const candidateDiv = document.createElement("div");
+                candidateDiv.classList.add("candidate");
+
+                const name = document.createElement("span");
+                name.textContent = candidate;
+
+                const voteButton = document.createElement("button");
+                voteButton.textContent = "Vote";
+                voteButton.onclick = () => confirmVote(society, candidate);
+
+                candidateDiv.appendChild(name);
+                candidateDiv.appendChild(voteButton);
+                candidatesList.appendChild(candidateDiv);
+            });
+
+            container.appendChild(candidatesList);
+        }
+
+        // Confirm vote and store in localStorage
+        function confirmVote(society, candidate) {
+            if (confirm(`Are you sure you want to vote for ${candidate}?`)) {
+                // Save vote to localStorage
+                votedDetails.push({
+                    username: currentUser.username,
+                    society: society,
+                    candidate: candidate
+                });
+                localStorage.setItem('votedDetails', JSON.stringify(votedDetails));
+
+                // Disable society in dropdown
+                const societyDropdown = document.getElementById("society");
+                const option = societyDropdown.querySelector(`option[value="${society}"]`);
+                option.disabled = true;
+                option.style.backgroundColor = "#D1FAE5";
+                option.textContent += ` (Voted: ${candidate})`;
+
+                // Clear candidates list
+                document.getElementById("candidates-container").innerHTML = "";
+                societyDropdown.value = "";
+                alert("Your vote has been submitted!");
+            }
+        }
+
+        // Check previous votes on page load
+        window.onload = checkPreviousVotes;
+    </script>
+</body>
+
+</html>
+

@@ -54,9 +54,18 @@ body {
 
 @media screen and (max-width:768px) {
     .nav {
-        display: none;
+        display: flex;
+        gap: 1.2rem;
+    }
+    .nav-link {
+        color: #718096;
+        font-size: 0.7rem;
+        font-weight: 600;
+        transform: color 0.1s;
+        transition: color 0.1s ease;
     }
 }
+
 
 .nav-link {
     color: #718096;
@@ -81,7 +90,7 @@ body {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: 600;
-    margin-right: 50px;
+    transition: all 0.3s ease;
 }
 
 @media screen and (min-width:768px) {
@@ -141,7 +150,6 @@ body {
     animation: animateScale 0.3s ease;
     padding: 10px;
     border-radius: 5%;
-    height: 500px;
     
 }
 @keyframes animateScale{
@@ -209,7 +217,7 @@ body {
 .fa-solid{
     font-size: 1.6rem;
     text-align: right;
-    margin-right: 5px;
+    margin-right: 8px;
     color: #5254f8;
 }
 .fa-user{
@@ -234,30 +242,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-.start-button,
-.tour-button {
-    border: none;
-    border-radius: 0.375rem;
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    transform: all 0.2s;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.tour-button {
-    background-color: var(--dark-gray);
-}
-
-.start-button:hover {
-    background-color: #5254f8;
-}
-
-.tour-button:hover {
-    background-color: var(--gray);
-}
-
 
 
 .image-container {
