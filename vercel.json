@@ -1,11 +1,22 @@
 {
   "routes": [
+    { "src": "/admin", "dest": "/Admin Panel/admin.html" },
+    { "src": "/admin.css", "dest": "/Admin Panel/admin.css" },
+    
+    { "src": "/feedback", "dest": "/FeedBack Form/feedback.html" },
+    { "src": "/feedback.css", "dest": "/FeedBack Form/feedback.css" },
+    
     { "src": "/", "dest": "/landing page/index.html" },
+    { "src": "/Register", "dest": "/landing page/Register.html" },
     { "src": "/style.css", "dest": "/landing page/style.css" },
     { "src": "/script.js", "dest": "/landing page/script.js" },
-    { "src": "/Register.html", "dest": "/landing page/Register.html" },
     { "src": "/register.css", "dest": "/landing page/register.css" },
-    { "src": "/Photos/(.*)", "dest": "/landing page/Photos/$1" },
+
+    { "src": "/photos/(.*)", "dest": "/landing page/photos/$1" },
+
+    { "src": "/votenow", "dest": "/vote Now/votenow.html" },
+    { "src": "/vote.css", "dest": "/vote Now/vote.css" },
+
     { "src": "/(.*)", "dest": "/landing page/index.html" }
   ]
 }
