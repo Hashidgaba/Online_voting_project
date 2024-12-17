@@ -292,8 +292,8 @@ body {
     font-size: 2.5rem;
     border-radius: 50%;
     border: 2px solid whitesmoke;
-    box-shadow: 1px 1px 3px rgba(15, 15, 15, 0.63),-1px -1px 3px rgb(15,15,15,0.63)  ;
-    padding: 10px;;
+    box-shadow: inset 1px 1px 3px rgba(226, 222, 222, 0.63), inset -1px -1px 3px rgba(226, 222, 222, 0.63)  ;
+    padding: 15px;;
 
 }
 .section-description {
