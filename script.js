@@ -84,8 +84,12 @@ let rightContent = document.querySelector(".content-right");
 let profileContent = document.querySelector(".content-mid");
 let profileButton = document.getElementById("profile");
 let removeButton = document.getElementById('remove');
+let hide = document.querySelectorAll(".hide");
 let header = document.querySelector('.header');
 function showProfile() {
+    hide.forEach(hide => {
+        hide.style.display = 'none'
+    })
     profileContent.style.display = 'block';
     leftContent.style.display = 'none';
     rightContent.style.display = 'none'
@@ -96,6 +100,9 @@ function showProfile() {
 
 }
 function removeProfile() {
+    hide.forEach(hide => {
+        hide.style.display = 'block'
+    })
     header.style.display = 'block'
     profileContent.style.display = 'none';
     leftContent.style.display = 'block';
