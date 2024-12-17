@@ -20,18 +20,26 @@
                 <div class="logo">
                     <img src="Photos/logo.jpg" alt="logoImage" class="logo-icon" />
                 </div>
-                
-                <nav class="nav">
+            
+                <!-- Hamburger Icon -->
+                <div class="hamburger" id="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            
+                <!-- Navigation Links -->
+                <nav class="nav" id="navMenu">
                     <a href="#" class="nav-link">Home</a>
                     <a href="/vote Now/votenow.html" class="nav-link vote">Vote Now</a>
                     <a href="/Admin Panel/admin.html" class="nav-link">Admin panel</a>
                     <a href="/FeedBack Form/feedback.html" class="nav-link">Feedback</a>
                 </nav>
+            
                 <div id="profileButtonContainer">
                     <button class="contact-button" id="loginButton">Login</button>
-                    <i style="display: none;" onclick=showProfile() id="profile" class="fa-regular fa-user"></i>
+                    <i style="display: none;" onclick="showProfile()" id="profile" class="fa-regular fa-user"></i>
                 </div>
             </header>
+            
         </div>
 
         <div class="content" style="overflow: hidden;">

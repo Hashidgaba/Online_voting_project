@@ -9,12 +9,8 @@
     --gray: #808080;
     --dark-gray: #555;
 }
-#profileButtonContainer{
-    display: flex;
-}
-#profile{
-    margin: 0px 3px;
-}
+
+
 
 * {
     margin: 0;
@@ -28,12 +24,26 @@ body {
     text-align: center;
     background-color: var(--background-color);
 }
+
+#profile{
+    margin: 0px 3px;
+}
+
+
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 70px;
-    overflow: hidden;
+    padding: 0 1.5rem;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
 }
 
 .nav {
@@ -41,35 +51,95 @@ body {
     gap: 1.5rem;
 }
 
-.logo-icon {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    background-color: none;
+.nav-link {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-#profile{
+.nav-link:hover {
+    color: #007BFF;
+}
+
+#profile {
     font-size: 1.4rem;
-    margin-top: 10px;
+    margin: 0 7px;
     padding: 8px;
     border-radius: 50%;
-    margin: 0px 7px;
     background-color: white;
 }
 
-#loginButton{
-    margin-right: 30px;
+#loginButton {
+    margin-right: 10px;
+    padding: 8px 15px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.nav-link {
-    color: #718096;
-    font-size: 1.125rem;
-    font-weight: 600;
-    transform: color 0.1s;
-    transition: color 0.1s ease;
+
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
-@media screen and (max-width:768px){
-    .nav-link{
-        font-size: 0.5rem;
+
+/* Responsive Styles */
+
+/* Tablets and Smaller Devices */
+@media screen and (max-width: 768px) {
+    .nav {
+        display: none; /* Hide navigation links initially */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: #fff;
+        width: 100%;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+        text-align: center;
+        gap: 1rem;
+        z-index: 10;
+    }
+
+    .nav.active {
+        display: flex; /* Show navigation when active */
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    #profileButtonContainer {
+        margin-right: 10px;
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 480px) {
+    .logo-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    #loginButton {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .header-content {
+        height: 60px;
+        padding: 0 1rem;
     }
 }
 
