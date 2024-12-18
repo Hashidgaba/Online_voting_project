@@ -4,107 +4,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Online Voting</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="admin.css">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #6366F1;
+            text-align: center;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            /* Makes it responsive on small screens */
+        }
+        
+        .stats div {
+            background-color: #6366F1;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1 1 30%;
+            /* Makes the stats items flexible */
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 400px;
+        }
+        
+        #totalVotes {
+            font-size: 24px;
+        }
+        /* Responsive Design for Small Screens */
+        
+        @media screen and (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stats div {
+                flex: 1 1 100%;
+                /* Stacks the stats vertically */
+                margin-bottom: 15px;
+            }
+            canvas {
+                height: 300px;
+                /* Make the chart a bit smaller on mobile */
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="admin-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <h2>Voting Admin</h2>
+
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <!-- Display total stats -->
+        <div class="stats">
+            <div>
+                <h3>Total Users</h3>
+                <p id="totalUsers">0</p>
             </div>
-            <ul class="nav">
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#users">Users</a></li>
-                <li><a href="#votes">Voting Results</a></li>
-                <li><a href="#settings">Settings</a></li>
-            </ul>
+            <div>
+                <h3>Total Votes</h3>
+                <p id="totalVotes">0</p>
+            </div>
+            <div>
+                <h3>Active Polls</h3>
+                <p id="activePolls">0</p>
+            </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <header>
-                <h1>Admin Dashboard</h1>
-            </header>
-
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="section">
-                <div class="overview">
-                    <div class="card">
-                        <h3>Total Users</h3>
-                        <p>1200</p>
-                    </div>
-                    <div class="card">
-                        <h3>Total Votes</h3>
-                        <p>3000</p>
-                    </div>
-                    <div class="card">
-                        <h3>Active Polls</h3>
-                        <p>3</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Users Section -->
-            <section id="users" class="section">
-                <h2>Users Management</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>Active</td>
-                            <td><button>Deactivate</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td>Inactive</td>
-                            <td><button>Activate</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Voting Results Section -->
-            <section id="votes" class="section">
-                <h2>Voting Results</h2>
-                <div class="vote-summary">
-                    <h3>Poll: Presidential Election</h3>
-                    <p>Candidate A: 1800 votes</p>
-                    <p>Candidate B: 1200 votes</p>
-                </div>
-            </section>
-
-            <!-- Settings Section -->
-            <section id="settings" class="section">
-                <h2>Admin Settings</h2>
-                <form>
-                    <label for="site-title">Site Title</label>
-                    <input type="text" id="site-title" placeholder="Voting System Admin">
-
-                    <label for="site-description">Description</label>
-                    <input type="text" id="site-description" placeholder="Manage your online voting system">
-
-                    <button type="submit">Save Settings</button>
-                </form>
-            </section>
-        </div>
+        <!-- Display candidate results -->
+        <h3>Voting Results</h3>
+        <canvas id="voteChart"></canvas>
     </div>
+
+    <script>
+        // Example data structure for voting
+        const candidatesData = {
+            Sports: ["Bulbul shah", "Faizan Haroon"],
+            Public: ["Hurr Abbas", "Nida yasir"],
+            Music: ["Sheraz Arif", "Rizwan Ahmed"],
+            Science: ["Hashid gaba", "Jibran"],
+            Literature: ["Abdul Moiz", "Yasir Faizan"],
+            Hackathone: ["Farzeen Ali", "Mansoor Ahmed"],
+            Marketing: ["Asmattullah khan", "Laiba khan"],
+        };
+
+        const votedDetails = JSON.parse(localStorage.getItem('votedDetails')) || [];
+
+        function updateStats() {
+            const totalUsers = new Set(votedDetails.map(vote => vote.username)).size;
+            const totalVotes = votedDetails.length;
+            const activePolls = Object.keys(candidatesData).length;
+
+            // Update stats in the UI
+            document.getElementById('totalUsers').textContent = totalUsers;
+            document.getElementById('totalVotes').textContent = totalVotes;
+            document.getElementById('activePolls').textContent = activePolls;
+        }
+
+        // Function to calculate and update voting results chart
+        function updateVotingResults() {
+            const votes = [];
+            const labels = [];
+
+            // Count votes for each candidate
+            Object.keys(candidatesData).forEach(society => {
+                candidatesData[society].forEach(candidate => {
+                    const candidateVotes = votedDetails.filter(vote => vote.candidate === candidate && vote.society === society).length;
+                    votes.push(candidateVotes);
+                    labels.push($ {
+                        society
+                    } - $ {
+                        candidate
+                    });
+                });
+            });
+
+            // Update chart data
+            voteChart.data.labels = labels;
+            voteChart.data.datasets[0].data = votes;
+            voteChart.update();
+        }
+
+        // Initialize Chart.js chart for displaying voting results
+        const ctx = document.getElementById('voteChart').getContext('2d');
+        const voteChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [], // Labels will be set dynamically
+                datasets: [{
+                    label: 'Votes',
+                    data: [], // Votes will be set dynamically
+                    backgroundColor: '#6366F1',
+                    borderColor: '#4e52c6',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Update stats and chart periodically
+        function updateDashboard() {
+            updateStats();
+            updateVotingResults();
+        }
+
+        // Call the function every 3 seconds to update the dashboard
+        setInterval(updateDashboard, 3000);
+
+        // Initial load of stats and chart
+        updateDashboard();
+    </script>
+
 </body>
 
 </html>
