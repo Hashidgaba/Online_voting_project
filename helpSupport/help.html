@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help and Support</title>
+    <style>
+        /* Basic Reset */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Body and Main Structure */
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #00bcd4;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+        }
+        
+        nav {
+            background-color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        nav ul li {
+            display: inline-block;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+        
+        nav ul li a:hover {
+            background-color: #00bcd4;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px;
+        }
+        
+        .content {
+            flex: 3;
+            margin-right: 20px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            background-color: #00bcd4;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .sidebar h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+        
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .sidebar ul li a:hover {
+            color: #f7f7f7;
+        }
+        
+        .faq-section,
+        .contact-form {
+            margin-bottom: 30px;
+        }
+        
+        .faq-section h2,
+        .contact-form h2 {
+            color: #00bcd4;
+            margin-bottom: 15px;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        
+        .faq-item h3 {
+            font-size: 1.2rem;
+            color: #00bcd4;
+        }
+        
+        .faq-item p {
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .contact-form button:hover {
+            background-color: #008c97;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        /* Responsive Design */
+        
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin: 20px;
+            }
+            .content {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .sidebar {
+                margin-top: 20px;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .faq-item h3 {
+                font-size: 1rem;
+            }
+            .contact-form button {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Help and Support</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            <!-- FAQ Section -->
+            <section id="faq" class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h3>How do I reset my password?</h3>
+                    <p>To reset your password, click on the "Forgot Password" link on the login page, enter your email address, and follow the instructions sent to your inbox.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How can I contact support?</h3>
+                    <p>You can contact support by filling out the contact form below or by emailing us at support@yourcompany.com.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Where can I find your terms of service?</h3>
+                    <p>You can find our terms of service at the bottom of every page, or you can click here to view them directly.</p>
+                </div>
+            </section>
+
+            <!-- Contact Form Section -->
+            <section id="contact" class="contact-form">
+                <h2>Contact Us</h2>
+                <form action="#" method="post">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        </div>
+
+        <div class="sidebar">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Account Settings</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Support Center</a></li>
+                <li><a href="#">Community Forums</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
