@@ -46,9 +46,17 @@
             box-sizing: border-box;
         }
 
-        canvas {
+        .chart-container {
+            position: relative;
+            margin: auto;
             width: 100%;
-            height: 400px;
+            max-width: 800px;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto; /* Makes the graph adapt to screen size */
         }
 
         #totalVotes {
@@ -67,8 +75,13 @@
                 margin-bottom: 15px;
             }
 
+            .chart-container {
+                width: 100%;
+                max-width: 100%; /* Full width on mobile */
+            }
+
             canvas {
-                height: 300px; /* Make the chart a bit smaller on mobile */
+                height: 300px; /* Reduce chart height for smaller screens */
             }
         }
     </style>
@@ -99,7 +112,9 @@
 
         <!-- Display candidate results -->
         <h3>Voting Results</h3>
-        <canvas id="voteChart"></canvas>
+        <div class="chart-container">
+            <canvas id="voteChart"></canvas>
+        </div>
     </div>
 
     <script>
@@ -164,9 +179,32 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, // Allows flexible aspect ratio for better responsiveness
                 scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
                     }
                 }
             }
