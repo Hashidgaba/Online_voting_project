@@ -230,13 +230,15 @@
             <!-- Contact Form Section -->
             <section id="contact" class="contact-form">
                 <h2>Contact Us</h2>
-                <form id="contactForm" onsubmit="return validateForm()">
+                <form id="contactForm">
                     <input type="text" name="name" id="name" placeholder="Your Name">
+                    <p id="errorName" style="color: red; display: none;">Name is required</p>
                     <input type="email" name="email" id="email" placeholder="Your Email">
+                    <p id="errorEmail" style="color: red; display: none;">Email is required</p>
                     <textarea name="message" id="message" rows="5" placeholder="Your Message"></textarea>
+                    <p id="errorText" style="color: red; display: none;">Message is required.</p>
                     <button type="submit">Submit</button>
                 </form>
-                <p id="error" style="color: red; display: none;">Please fill out all fields correctly.</p>
             </section>
         </div>
 
@@ -257,31 +259,62 @@
 
     <script>
         // JavaScript Validation Function
-        function validateForm() {
+        let formCont = document.getElementById("contactForm");
+        formCont.addEventListener("submit", (e) => {
+            e.preventDefault();
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var message = document.getElementById('message').value;
             var errorMessage = document.getElementById('error');
+            var errorName = document.getElementById('errorName');
+            var errorEmail = document.getElementById('errorEmail');
+            var errorText = document.getElementById('errorText');
 
             // Simple email regex for validation
             var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
             if (name == "" || email == "" || message == "") {
-                errorMessage.textContent = "All fields are required.";
-                errorMessage.style.display = "block";
-                return false;
+                // errorMessage.textContent = "All fields are required.";
+                // errorMessage.style.display = "block";
+                // return false;
+                if (name == "") {
+                    errorName.style.display = "block"
+                } else {
+                    errorName.style.display = 'none'
+                }
+
+                if (email == "") {
+                    errorEmail.style.display = 'block'
+
+                } else {
+                    errorEmail.style.display = 'none'
+                }
+
+                if (message == "") {
+                    errorText.style.display = 'block'
+
+                } else {
+                    errorText.style.display = 'none'
+                }
+                return;
             }
 
             if (!emailPattern.test(email)) {
-                errorMessage.textContent = "Please enter a valid email address.";
-                errorMessage.style.display = "block";
-                return false;
+                errorEmail.textContent = "Please enter a valid email address.";
+                errorEmail.style.display = "block";
+                return;
+            } else {
+                errorEmail.style.display = "none";
             }
 
-            // Hide error message if validation passes
-            errorMessage.style.display = "none";
-            return true;
-        }
+            // // Hide error message if validation passes
+            // errorMessage.style.display = "none";
+            alert('Registration successful!');
+            errorName.style.display = 'none'
+            errorEmail.style.display = 'none'
+            errorText.style.display = 'none'
+            formCont.reset();
+        })
     </script>
 
 </body>
