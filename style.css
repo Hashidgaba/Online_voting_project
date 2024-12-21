@@ -28,8 +28,6 @@ body {
 #profile{
     margin: 0px 3px;
 }
-
-
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -119,7 +117,7 @@ body {
         gap: 1rem;
         z-index: 10;
     }
-    .logo-icon {
+    .header-content .logo-icon {
         display: none;
     }
     .nav-logo-icon{
@@ -142,14 +140,16 @@ body {
     .nav.active {
         display: flex; 
     }
+
 }
 
 /* Mobile Devices */
 @media screen and (max-width: 480px) {
    
     #loginButton {
-        padding: 6px 12px;
+        padding: 8px 12px;
         font-size: 0.8rem;
+        margin-right: 13px;
     }
 
     .nav-link {
