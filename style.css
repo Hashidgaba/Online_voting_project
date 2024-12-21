@@ -113,7 +113,7 @@ body {
         width: 100%;
         height: 100vh;
         padding: 1rem 0;
-        animation: animate 0.4s ease;
+        animation: animate 0.3s linear;
         gap: 1rem;
         z-index: 10;
     }
@@ -149,7 +149,7 @@ body {
     #loginButton {
         padding: 8px 12px;
         font-size: 0.8rem;
-        margin-right: 13px;
+        margin-right: 25px;
     }
 
     .nav-link {
