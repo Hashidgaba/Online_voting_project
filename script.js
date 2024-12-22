@@ -34,6 +34,46 @@ if (isLoggedIn) {
         window.location.href = 'Register.html';
     });
 }
+//admin functionality
+const adminLogin = localStorage.getItem('adminLogin') === 'true';
+const admin = document.querySelectorAll(".admin")
+let button = document.querySelector(".contactUs")
+if (adminLogin) {
+    admin.forEach(admin => {
+        admin.style.display = 'block'
+    })
+    loginButton.style.display = 'none'
+    Register.style.display = 'none'
+    profile.style.display = 'block'
+    document.querySelector(".username").innerHTML = '@mhvotingteam'
+    document.querySelector(".profileName").innerHTML = 'MH-Team'
+    document.getElementById("voterListContainer").style.display = 'none'
+    document.querySelector(".voterList").style.display = 'none'
+    document.querySelectorAll(".adminHide").forEach(hide => {
+        hide.style.display = 'none'
+    })  
+    button.style.display = 'none'
+    document.querySelector(".Dashboard").style.display = 'block'
+
+} else if (isLoggedIn) {
+    admin.forEach(admin => {
+        admin.style.display = 'none'
+    })
+    document.querySelectorAll(".adminHide").forEach(hide => {
+        hide.style.display = 'block'
+    })  
+
+    loginButton.style.display = 'none'
+    Register.style.display = 'none'
+    profile.style.display = 'block'
+} else {
+    admin.forEach(admin => {
+        admin.style.display = 'none'
+    })
+    loginButton.style.display = 'block'
+    Register.style.display = 'block'
+    profile.style.display = 'none'
+}
 
 // Hamburger Menu Toggle
 const hamburger = document.querySelector(".hamburger");
@@ -41,12 +81,12 @@ const navMenu = document.getElementById("navMenu");
 
 hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
-    if(navMenu.classList.contains("active")){
+    if (navMenu.classList.contains("active")) {
         hide.forEach(hide => {
             hide.style.display = 'none'
         })
 
-    }else{
+    } else {
 
         hide.forEach(hide => {
             hide.style.display = 'block'
@@ -77,15 +117,24 @@ function displayVoterList(username) {
     });
 }
 
-//logout functionality
-if (isLoggedIn) {
-    document.getElementById("logoutButton").style.display = 'block'
-
-    function logout() {
-        localStorage.setItem('loggedIn', 'false');
-        localStorage.removeItem('currentUser');
-        window.location.href = 'index.html'; 
+//logout functionality for both admin and user
+if (isLoggedIn || adminLogin) {
+    if (adminLogin) {
+        document.getElementById("logoutButton").style.display = 'block'
+        function logout() {
+            localStorage.setItem('adminLogin', 'false');
+            window.location.href = 'index.html';
+        }
+      
+    } else {
+        document.getElementById("logoutButton").style.display = 'block'
+        function logout() {
+            localStorage.setItem('loggedIn', 'false');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
     }
+
 } else {
     document.getElementById("logoutButton").style.display = 'none'
 }

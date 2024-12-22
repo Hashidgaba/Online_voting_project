@@ -26,10 +26,12 @@
                 <nav class="nav" id="navMenu">
                     <img src="Photos/logo.jpg" alt="logoImage" class="nav-logo-icon" />
                     <a href="#" class="nav-link">Home</a>
-                    <a href="/vote Now/votenow.html" class="nav-link vote">Vote Now</a>
-                    <a href="/Admin Panel/adminLogin.html" class="nav-link">Admin panel</a>
-                    <a href="/FeedBack Form/feedback.html" class="nav-link">Feedback</a>
-                    <a href="/helpSupport/help.html" class="nav-link">Help and Support</a>
+                    <a href="/vote Now/votenow.html" class="nav-link vote adminHide">Vote Now</a>
+                    <a href="/Admin Panel/admin.html" class="nav-link admin">Dashboard</a>
+                    <a href="/FeedBack Form/feedback.html" class="nav-link adminHide">Feedback</a>
+                    <a href="/helpSupport/help.html" class="nav-link adminHide">Help and Support</a>
+                    <a  class="nav-link admin">Settings</a>
+                    <a class="nav-link admin " id="adminLogout" onclick=logout()>logout</a>
                 </nav>
 
                 <div id="profileButtonContainer">
@@ -53,7 +55,8 @@
                         <a href="/vote Now/votenow.html" style="display: none;" class="contact-button vote" id="voteNow">Vote
                             Now</a>
                         <a class="contact-button" id="register">Register</a>
-                        <a href="helpSupport/help.html" class="contact-button" id="tower">contact us</a>
+                        <a href="helpSupport/help.html" class="contact-button contactUs" id="tower">contact us</a>
+                        <a style="display: none;" href="Admin Panel/admin.html" class="contact-button Dashboard" id="tower">Dashboard</a>
                     </div>
                 </div>
                 <div class="content-mid">
@@ -79,7 +82,7 @@
                             <div class="right"><i style="font-size: 0.8rem;" class="fa-solid fa-greater-than"></i></div>
                         </div>
                         <!-- voter list -->
-                        <div class="userdetail-link" style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
+                        <div class="userdetail-link voterList" style="display: flex; justify-content: space-between; align-items:center; margin: 8px 0px;">
                             <div style="display: flex; align-items:center; justify-content: center;" class="left">
                                 <i style="font-size: 1rem;" class="fa-solid fa-check-to-slot"></i>
                                 <p style="margin: 0 auto;">Voter List</p>

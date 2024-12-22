@@ -102,6 +102,7 @@
 
             // Check if entered credentials are correct
             if (username === validUsername && password === validPassword) {
+                localStorage.setItem('adminLogin', 'true');
                 // Redirect to admin panel
                 window.location.href = 'admin.html';
             } else {

@@ -44,9 +44,11 @@
 
         <div class="toggle-link">
             <a href="#" id="toggleLink">Don't have an account? Register here</a>
+            OR
+            <a href="Admin Panel/adminLogin.html" class="adminBtn">login as admin</a>
         </div>
     </div>
-    
+
     <script>
         // References to forms and elements
         const formTitle = document.getElementById('formTitle');
@@ -111,7 +113,7 @@
                 } else {
                     document.querySelector(".userError").style.display = 'none';
                     document.querySelector(".passError").style.display = 'none';
-                    
+
                 }
 
                 if (password.length < 7) {
@@ -157,4 +159,5 @@
     </script>
 
 </body>
+
 </html>

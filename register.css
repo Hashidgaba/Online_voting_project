@@ -32,7 +32,7 @@ body {
   }
 
   .form-container input {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -69,3 +69,10 @@ body {
   .toggle-link a:hover {
     text-decoration: underline;
   }
+  /* .adminBtn{
+    color: #6366F1;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 auto;
+    margin-left: 100px;
+  } */
