@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login and Registration</title>
-
     <link rel="stylesheet" href="register.css">
 </head>
 
@@ -14,7 +13,7 @@
         <h2 id="formTitle">Login</h2>
         <!-- Login Form -->
         <form id="loginForm">
-            <label for="loginEmail"> Email</label>
+            <label for="loginEmail">Email</label>
             <input type="email" id="loginEmail" placeholder="Email" required>
             <P class="error" style="color: red; margin: 2px 0px; display: none;">Invalid email or Password</P>
 
@@ -28,7 +27,7 @@
 
             <label for="registerUsername">Name</label>
             <input type="text" id="registerUsername" placeholder="Enter your Name">
-            <P class="userError" style="color: red; margin: 2px 0px; display: none;">user already Exist</P>
+            <P class="userError" style="color: red; margin: 2px 0px; display: none;">User already Exist</P>
 
             <label for="registerEmail">Email</label>
             <input type="email" id="registerEmail" placeholder="Enter your email" required>
@@ -36,16 +35,22 @@
 
             <label for="registerPassword">Password</label>
             <input type="password" id="registerPassword" placeholder="Create a password">
-            <P class="passError" style="color: red; margin: 2px 0px; display: none; margin-bottom: 4px;">invalid
-                password</P>
+            <P class="passError" style="color: red; margin: 2px 0px; display: none; margin-bottom: 4px;">Invalid password</P>
 
             <button type="submit">Register</button>
         </form>
 
         <div class="toggle-link">
-            <a href="#" id="toggleLink">Don't have an account? Register here</a>
-            OR
-            <a href="Admin Panel/adminLogin.html" class="adminBtn">login as admin</a>
+            <a href="#" id="toggleLink">Don't have an account? Register here</a> OR
+            <a href="Admin Panel/adminLogin.html" class="adminBtn">Login as admin</a>
+        </div>
+    </div>
+
+    <!-- Popup container -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <p>Your registration was successful!</p>
+            <button onclick="closePopup()">OK</button>
         </div>
     </div>
 
@@ -87,7 +92,8 @@
             if (user) {
                 localStorage.setItem('loggedIn', 'true');
                 localStorage.setItem('currentUser', JSON.stringify(user));
-                window.location.href = 'index.html';  // This will redirect to index.html // Redirect to voting or profile page
+                openPopup();
+                // window.location.href = 'index.html';
             } else {
                 document.querySelector(".error").style.display = "block";
                 document.querySelector(".error").innerHTML = "Invalid email or password";
@@ -106,14 +112,11 @@
             if (username.length < 4 || password.length < 7) {
                 if (username.length < 4) {
                     document.querySelector(".userError").style.display = 'block';
-                    document.querySelector(".userError").innerHTML = 'invalid Name';
+                    document.querySelector(".userError").innerHTML = 'Invalid Name';
                     document.querySelector(".passError").style.display = 'none';
-
-
                 } else {
                     document.querySelector(".userError").style.display = 'none';
                     document.querySelector(".passError").style.display = 'none';
-
                 }
 
                 if (password.length < 7) {
@@ -147,15 +150,31 @@
             }
 
             // Save new user
-            const newUser = { email, username, password, vote: null }; // Add vote property
+            const newUser = {
+                email,
+                username,
+                password,
+                vote: null
+            };
             users.push(newUser);
             localStorage.setItem('users', JSON.stringify(users));
             localStorage.setItem('loggedIn', 'true');
             localStorage.setItem('currentUser', JSON.stringify(newUser));
 
-            alert('Registration successful!');
-            window.location.href = 'index.html';  // This will redirect to index.html // Redirect to voting or profile page
+            // Open the popup after successful registration
+            openPopup();
         });
+
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        // Function to close the popup and redirect to index.html
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            window.location.href = 'index.html'; // Redirect to index.html after closing popup
+        }
     </script>
 
 </body>
