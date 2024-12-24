@@ -29,6 +29,12 @@
 
         <div id="candidates-container"></div>
     </div>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <p style="color: #6366F1;">Your details have been saved</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
 
     <script>
         const candidatesData = {
@@ -115,15 +121,24 @@
                 const option = societyDropdown.querySelector(`option[value="${society}"]`);
                 option.disabled = true;
                 option.style.backgroundColor = "#D1FAE5";
-                option.textContent += ` (Voted: ${candidate})`;
+                option.textContent += ` (already Voted: ${candidate})`;
 
                 // Clear candidates list
                 document.getElementById("candidates-container").innerHTML = "";
                 societyDropdown.value = "";
-                alert("Your vote has been submitted!");
+                openPopup();
             }
         }
+        function openPopup() {
+            document.getElementById('popup').style.display = 'flex';
+            document.querySelector(".container").style.display = 'none'
+        }
 
+        // Function to close the popup and redirect to index.html
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.querySelector(".container").style.display = 'block'
+        }
         // Check previous votes on page load
         window.onload = checkPreviousVotes;
     </script>
